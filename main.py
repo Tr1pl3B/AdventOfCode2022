@@ -1,4 +1,4 @@
-def elfHighesCarrCals():
+def elfHighesCarrCals(whichOne):
     puzIn = open('puzInput.txt', 'r')
     cals = 0
     calPerElf = list()
@@ -9,7 +9,17 @@ def elfHighesCarrCals():
         else:
             cals += int(line)
     calPerElf.sort()
-    return calPerElf[-1] + calPerElf[-2] + calPerElf[-3]
+    return int(calPerElf[whichOne])
+
+def breakLine(len):
+    line = ''
+    for x in range(len):
+        line += '-'
+    return line
 
 if __name__ == '__main__':
-    print(elfHighesCarrCals())
+
+    print("Day 1:")
+    print('The elfe with the most cal\'s is carrying: ' + str(elfHighesCarrCals(-1)))
+    print('The top three elfe\'s are carrying: ' + str(elfHighesCarrCals(-1) + elfHighesCarrCals(-2) + elfHighesCarrCals(-3)))
+    print(breakLine(50))
