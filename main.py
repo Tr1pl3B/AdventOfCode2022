@@ -1,4 +1,4 @@
-def elfHighesCarrCals(whichOne):
+def elfHighesCarrCals(whichOne) -> int:
     calIn = open('inputCals.txt', 'r')
     cals = 0
     calPerElf = list()
@@ -11,7 +11,7 @@ def elfHighesCarrCals(whichOne):
     calPerElf.sort()
     return int(calPerElf[whichOne])
 
-def ticTaccToeOne():
+def ticTaccToeOne() -> int:
     tttIn = open('inputTTT.txt', 'r')
     score = 0
     for line in tttIn:
@@ -39,7 +39,7 @@ def ticTaccToeOne():
 
     return score
 
-def ticTacToeTwo():
+def ticTacToeTwo() -> int:
     tttIn = open('inputTTT.txt', 'r')
     score = 0
     for line in tttIn:
@@ -70,19 +70,31 @@ def ticTacToeTwo():
 
     return score
 
-def getSumOfItemPrio():
+def getSumOfItemPrio() -> int:
     input = list(list())
-    for line in open('inputSOIP.txt', 'r').readline():
+    for line in open('inputSOIP.txt', 'r'):
+        values = list()
         for char in line:
-            values = list()
-            if char.lower():
+            if char.islower():
                 values.append(ord(char) - 96)
-            elif char.upper():
+            elif char.isupper():
                 values.append(ord(char) - 38)
         input.append(values)
+    count = 0
+    for bag in input:
+        mid = int(len(bag) / 2)
+        comp1 = bag[:mid]
+        comp2 = bag[mid:]
+        for comp in bag:
+            for value in comp1:
+                if value in comp2:
+                    count += value
+                    break
+            break
+    return count
 
 
-def breakLine(len):
+def breakLine(len) -> str:
     line = ''
     for x in range(len):
         line += '-'
@@ -98,3 +110,4 @@ if __name__ == '__main__':
     print('The totle score would be: ' + str(ticTaccToeOne()))
     print('With the right encoding the total score would be: ' + str(ticTacToeTwo()))
     print('Day 3:')
+    print('The sum of the priorities of the items are: ' + str(getSumOfItemPrio()))
