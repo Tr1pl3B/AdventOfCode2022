@@ -70,7 +70,7 @@ def ticTacToeTwo() -> int:
 
     return score
 
-def getSumOfItemPrio() -> int:
+def getInputDayThree() -> list(list()):
     input = list(list())
     for line in open('inputSOIP.txt', 'r'):
         values = list()
@@ -80,6 +80,10 @@ def getSumOfItemPrio() -> int:
             elif char.isupper():
                 values.append(ord(char) - 38)
         input.append(values)
+    return input
+
+def getSumOfItemPrio() -> int:
+    input = getInputDayThree()
     count = 0
     for bag in input:
         mid = int(len(bag) / 2)
