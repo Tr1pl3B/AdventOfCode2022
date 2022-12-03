@@ -1,15 +1,11 @@
+import pathlib
+
+
+def getInput(input: pathlib.Path) -> List[List[int]]:
+
 def elfHighesCarrCals(whichOne):
-    calIn = open('inputCals.txt', 'r')
-    cals = 0
-    calPerElf = list()
-    for line in calIn:
-        if line == '\n':
-            calPerElf.append(cals)
-            cals = 0
-        else:
-            cals += int(line)
-    calPerElf.sort()
-    return int(calPerElf[whichOne])
+    topCals = [line for line in open('inputCals.txt', 'r') if int(line)]
+    return topCals
 
 def ticTaccToeOne():
     tttIn = open('inputTTT.txt', 'r')
