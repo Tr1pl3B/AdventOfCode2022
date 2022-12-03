@@ -1,5 +1,5 @@
 def elfHighesCarrCals(whichOne) -> int:
-    calIn = open('inputCals.txt', 'r')
+    calIn = open('inputDay1.txt', 'r')
     cals = 0
     calPerElf = list()
     for line in calIn:
@@ -12,7 +12,7 @@ def elfHighesCarrCals(whichOne) -> int:
     return int(calPerElf[whichOne])
 
 def ticTaccToeOne() -> int:
-    tttIn = open('inputTTT.txt', 'r')
+    tttIn = open('inputDay2.txt', 'r')
     score = 0
     for line in tttIn:
         line = line.split()
@@ -40,7 +40,7 @@ def ticTaccToeOne() -> int:
     return score
 
 def ticTacToeTwo() -> int:
-    tttIn = open('inputTTT.txt', 'r')
+    tttIn = open('inputDay2.txt', 'r')
     score = 0
     for line in tttIn:
         line = line.split()
@@ -72,7 +72,7 @@ def ticTacToeTwo() -> int:
 
 def getInputDayThree() -> list(list()):
     input = list(list())
-    for line in open('inputSOIP.txt', 'r'):
+    for line in open('inputDay3.txt', 'r'):
         values = list()
         for char in line:
             if char.islower():
@@ -89,6 +89,7 @@ def getSumOfItemPrio() -> int:
         mid = int(len(bag) / 2)
         comp1 = bag[:mid]
         comp2 = bag[mid:]
+        count = 0 #[value for comp in bag for value in comp1 if value in comp2]
         for comp in bag:
             for value in comp1:
                 if value in comp2:
@@ -97,6 +98,16 @@ def getSumOfItemPrio() -> int:
             break
     return count
 
+def getSumOfGroupBatches() -> int:
+    input = getInputDayThree()
+    groups = [input[index: index + 3] for index in range(0, len(input), 3)]
+    count = 0
+    for group in groups:
+        for value in group[0]:
+            if value in group[1] and value in group[2]:
+                count += value
+                break
+    return count
 
 def breakLine(len) -> str:
     line = ''
@@ -113,5 +124,7 @@ if __name__ == '__main__':
     print('Day 2:')
     print('The totle score would be: ' + str(ticTaccToeOne()))
     print('With the right encoding the total score would be: ' + str(ticTacToeTwo()))
+    print(breakLine(50))
     print('Day 3:')
     print('The sum of the priorities of the items are: ' + str(getSumOfItemPrio()))
+    print('The sum of the group batch priorities is: ' + str(getSumOfGroupBatches()))
