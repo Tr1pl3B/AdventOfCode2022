@@ -89,13 +89,13 @@ def getSumOfItemPrio() -> int:
         mid = int(len(bag) / 2)
         comp1 = bag[:mid]
         comp2 = bag[mid:]
-        count = 0 #[value for comp in bag for value in comp1 if value in comp2]
         for comp in bag:
             for value in comp1:
                 if value in comp2:
                     count += value
                     break
             break
+
     return count
 
 def getSumOfGroupBatches() -> int:
