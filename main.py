@@ -70,6 +70,18 @@ def ticTacToeTwo():
 
     return score
 
+def getSumOfItemPrio():
+    input = list(list())
+    for line in open('inputSOIP.txt', 'r').readline():
+        for char in line:
+            values = list()
+            if char.lower():
+                values.append(ord(char) - 96)
+            elif char.upper():
+                values.append(ord(char) - 38)
+        input.append(values)
+
+
 def breakLine(len):
     line = ''
     for x in range(len):
@@ -85,3 +97,4 @@ if __name__ == '__main__':
     print('Day 2:')
     print('The totle score would be: ' + str(ticTaccToeOne()))
     print('With the right encoding the total score would be: ' + str(ticTacToeTwo()))
+    print('Day 3:')
