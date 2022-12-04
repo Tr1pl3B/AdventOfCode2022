@@ -26,4 +26,4 @@ if __name__ == '__main__':
     print('|' + breakLine(60))
     print('|Day 4:')
     print('|The sum of the pairs with fully contained assignments is: ' + str(dayFour.getUselesAssignments()))
-    print('')
+    print('|The sum of overlapping pairs is: ' + str(dayFour.getPairsOfOverlap()))
