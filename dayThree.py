@@ -1,4 +1,4 @@
-def getInputDayThree() -> list(list()):
+def getInput() -> list(list()):
     input = list(list())
     for line in open('inputDay3.txt', 'r'):
         values = list()
@@ -11,7 +11,7 @@ def getInputDayThree() -> list(list()):
     return input
 
 def getSumOfItemPrio() -> int:
-    input = getInputDayThree()
+    input = getInput()
     count = 0
     for bag in input:
         mid = int(len(bag) / 2)
@@ -27,7 +27,7 @@ def getSumOfItemPrio() -> int:
     return count
 
 def getSumOfGroupBatches() -> int:
-    input = getInputDayThree()
+    input = getInput()
     groups = [input[index: index + 3] for index in range(0, len(input), 3)]
     count = 0
     for group in groups:
