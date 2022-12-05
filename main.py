@@ -1,3 +1,4 @@
+import dayFive
 import dayOne
 import dayThree
 import dayTwo
@@ -27,3 +28,6 @@ if __name__ == '__main__':
     print('|Day 4:')
     print('|The sum of the pairs with fully contained assignments is: ' + str(dayFour.getUselesAssignments()))
     print('|The sum of overlapping pairs is: ' + str(dayFour.getPairsOfOverlap()))
+    print('|' + breakLine(60))
+    print('|The crates on Top, with crane 9000, are: ' + dayFive.getTopCrates9000())
+    # print('|The crates on Top, with crane 9001, are: ' + dayFive.getTopCrates9001())
