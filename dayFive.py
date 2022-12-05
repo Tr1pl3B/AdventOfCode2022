@@ -58,8 +58,8 @@ def getTopCrates9001() -> str:
         fr -= 1
         to -= 1
         frLen = len(stacks[fr])
-        stacks[to].extend(stacks[fr][frLen - 1 - count:])
-        for i in range(count - 1):
+        stacks[to].extend(stacks[fr][frLen - count:])
+        for i in range(count):
             stacks[fr].pop()
     out = ''
     for tower in stacks:
