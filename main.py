@@ -1,5 +1,6 @@
 import dayFive
 import dayOne
+import daySix
 import dayThree
 import dayTwo
 import dayFour
@@ -31,3 +32,4 @@ if __name__ == '__main__':
     print('|' + breakLine(60))
     print('|The crates on Top, with crane 9000, are: ' + dayFive.getTopCrates9000())
     print('|The crates on Top, with crane 9001, are: ' + dayFive.getTopCrates9001())
+    print('|Number of chars processed before first start-of-packet marker ' + str(daySix.getIndex()))
