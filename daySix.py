@@ -15,5 +15,4 @@ def getIndex() -> int:
                 count += 1
             else:
                 break
-        print()
         return count
