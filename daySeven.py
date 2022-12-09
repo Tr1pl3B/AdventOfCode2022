@@ -57,4 +57,3 @@ def GetSizeDirToDelete():
         return ans
 
     return solve()
-# 4183246
