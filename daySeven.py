@@ -10,18 +10,26 @@ def GetSumSmallestDirs() -> int:
             if line[2] == 'c':
                 command, direct = line.replace('$', '').strip().split()
                 if direct == '..':
-                    folderList = [folder for folder in virtPath.glob('**/*') if folder.is_dir()]
-                    for folder in folderList:
-                        folderSizes[folder] = folder.stat().st_size
                     virtPath = virtPath.parent
                 else:
                     virtPath = virtPath/ direct
-        else:
+        elif line[0] != 'd':
             size, file = line.split()
             direct = virtPath.name
             if direct in folderSizes.keys():
                 folderSizes[direct] += int(size)
             else:
                 folderSizes[direct] = int(size)
-                
-    return -1
+    print()
+    # for line in open('inputDay7.txt', 'r'):
+    #     line = line.strip()
+    #     if line[0] == '$' and line[2] == 'c':
+    #         command, direct = line.replace('$', '').strip().split()
+    #         if direct == '..':
+    #             virtPath = virtPath.parent
+    #         else:
+    #             virtPath = virtPath/direct
+    #     elif line[0] == 'd':
+    #
+    #         folderSizes[]
+
