@@ -5,6 +5,7 @@ import daySix
 import dayThree
 import dayTwo
 import dayFour
+from pathlib import Path
 
 def breakLine(len) -> str:
     line = ''
@@ -40,4 +41,7 @@ if __name__ == '__main__':
     print('|Number of chars processed before first start-of-message marker: ' + str(daySix.getIndex(14)))
     print('|' + breakLine(70))
     print('|Day 7')
-    print('|Sum of Dicts over 100000 in size: ' + str(daySeven.getSumBigestDirs()))
+    print('|Sum of Dicts over 100000 in size: ' + str(daySeven.GetSumSmallestDirs()))
+    path = Path('//asdg/asdg/asd/adfb/txcv/ds')
+    dict = path.name
+    print()

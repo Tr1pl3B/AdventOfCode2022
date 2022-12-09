@@ -1,31 +1,27 @@
 from pathlib import Path
-def getSumBigestDirs() -> int:
-    dick = {'/': 0}
-    cwd = list()
 
+def GetSumSmallestDirs() -> int:
+    folderSizes = dict()
+    virtPath = Path('')
+    sum = 0
     for line in open('inputDay7.txt', 'r'):
         line = line.strip()
         if line[0] == '$':
             if line[2] == 'c':
-                command, dir = line.replace('$', '').split()
-                if dir == '/':
-                    cwd = [dir]
-                elif dir == '..':
-                    cwd.pop()
-                    if dir in dick.values():
-                        dick[cwd[-1]] = dick[cwd[-1]]
-                    else:
-                        dick[cwd[-1]] = 0
+                command, direct = line.replace('$', '').strip().split()
+                if direct == '..':
+                    folderList = [folder for folder in virtPath.glob('**/*') if folder.is_dir()]
+                    for folder in folderList:
+                        folderSizes[folder] = folder.stat().st_size
+                    virtPath = virtPath.parent
                 else:
-                    cwd.append(dir)
-            elif line[2] == 'l':
-                pass
+                    virtPath = virtPath/ direct
         else:
-            first, second = line.split()
-            if first[0].isdigit():
-                dick[cwd[-1]] += int(first)
-
-    for size in dick.values():
-        if size > 100000:
-            sum += size
-    return sum
+            size, file = line.split()
+            direct = virtPath.name
+            if direct in folderSizes.keys():
+                folderSizes[direct] += int(size)
+            else:
+                folderSizes[direct] = int(size)
+                
+    return -1
