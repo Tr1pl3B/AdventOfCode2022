@@ -1,50 +1,44 @@
 def GetInput() -> list(list()):
-    return [list(map(int, list(row.strip()))) for row in open('inputDay8.txt', 'r')]
+    return [list(map(int, row.strip())) for row in open('inputDay8.txt', 'r')]
 def GetVisibeTrees() -> int:
-    input = GetInput()
-    notVisTrees = 0
-    for row in range(1, len(input)-1):
-        for column in range(1, len(input[row])-1):
-            tree = input[row][column]
-            notVis = GetNotVis(row, column, tree, input)
-            if notVis:
-                notVisTrees += 1
-    visTrees = (len(input) * len(input[0])) - notVisTrees
-    return visTrees
+    arr = GetInput()
+    result = 0
 
-def GetNotVis(row, column, tree, input) -> bool:
-    notVis = False
-    if NotVisInRow(row, column, tree, input) and NotVisInColumn(row, column, tree, input):
-        notVis = True
-    return notVis
+    # Iterate over the array
+    for i in range(len(arr)):
+        for j in range(len(arr[0])):
+            # Check if the current tree is visible from the left
+            visible_from_left = True
+            for k in range(j):
+                if arr[i][k] >= arr[i][j]:
+                    visible_from_left = False
+                    break
 
+            # Check if the current tree is visible from the right
+            visible_from_right = True
+            for k in range(j + 1, len(arr[0])):
+                if arr[i][k] >= arr[i][j]:
+                    visible_from_right = False
+                    break
 
-def NotVisInRow(row, column, tree, input) -> bool:
-    vis = False
-    smallest = 9
-    bigL = bigR = 0
-    for index, elem in enumerate(input[row]):
-        if elem < smallest:
-            smallest = elem
-        if elem > bigL and index < column:
-            bigL = elem
-        elif elem > bigR and index > column:
-            bigR = elem
-    if bigL >= tree and bigR >= tree or elem <= smallest:
-        vis = True
-    return vis
-def NotVisInColumn(row, column, tree, input) -> bool:
-    vis = False
-    smallest = 9
-    bigU = bigD = 0
-    for index, elem in enumerate(input):
-        elem = elem[column]
-        if elem < smallest:
-            smallest = elem
-        if elem > bigU and index < row:
-            bigU = elem
-        elif elem > bigD and index > row:
-            bigD = elem
-    if bigU >= tree and bigD >= tree or elem <= smallest:
-        vis = True
-    return vis
+            # Check if the current tree is visible from the top
+            visible_from_top = True
+            for k in range(i):
+                if arr[k][j] >= arr[i][j]:
+                    visible_from_top = False
+                    break
+
+            # Check if the current tree is visible from the bottom
+            visible_from_bottom = True
+            for k in range(i + 1, len(arr)):
+                if arr[k][j] >= arr[i][j]:
+                    visible_from_bottom = False
+                    break
+
+            # If the current tree is visible from any direction,
+            # increment the result
+            if visible_from_left or visible_from_right or visible_from_top or visible_from_bottom:
+                result += 1
+
+    # Return the result
+    return result
