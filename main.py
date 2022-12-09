@@ -41,5 +41,6 @@ if __name__ == '__main__':
     print('|Number of chars processed before first start-of-message marker: ' + str(daySix.getIndex(14)))
     print('|' + breakLine(70))
     print('|Day 7')
-    print('|Sum of Dicts under 100000 in size is: ' + str(daySeven.GetSumSmallestDirs()))
+    print('|Sum of Dicts under 100000 in size is: ' + str(daySeven.GetSumOfDirUnder100000()[1]))
+    print('|The Directory to delete has the size: ' + str(daySeven.GetSizeDirToDelete()))
 

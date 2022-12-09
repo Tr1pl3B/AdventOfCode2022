@@ -1,6 +1,7 @@
 cwd = root = dict()
 virtPath = list()
-def GetSumSmallestDirs() -> int:
+
+def GetInput():
     for line in open('inputDay7.txt', 'r'):
         line = line.strip()
         if line[0] == '$':
@@ -23,18 +24,37 @@ def GetSumSmallestDirs() -> int:
                     cwd[second] = dict()
             else:
                 cwd[second] = int(first)
-    return(GetIt()[1])
 
-def GetIt(direct = root):
+def GetSumOfDirUnder100000(direct = root):
+    GetInput()
     if type(direct) == int:
         return (direct, 0)
     sum = 0
     ans = 0
     for sub in direct.values():
-        subSum, subAns = GetIt(sub)
+        subSum, subAns = GetSumOfDirUnder100000(sub)
         sum += subSum
         ans += subAns
     if sum <= 100000:
         ans += sum
     return (sum, ans)
 
+def size(dir=root):
+    if type(dir) == int:
+        return dir
+    return sum(map(size, dir.values()))
+def GetSizeDirToDelete():
+    t = size() - 40_000_000
+    def solve(dir=root):
+        ans = float("inf")
+        if size(dir) >= t:
+            ans = size(dir)
+        for child in dir.values():
+            if type(child) == int:
+                continue
+            q = solve(child)
+            ans = min(ans, q)
+        return ans
+
+    return solve()
+# 4183246
