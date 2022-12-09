@@ -1,3 +1,4 @@
+import dayEight
 import dayFive
 import dayOne
 import daySeven
@@ -43,4 +44,6 @@ if __name__ == '__main__':
     print('|Day 7')
     print('|Sum of Dicts under 100000 in size is: ' + str(daySeven.GetSumOfDirUnder100000()[1]))
     print('|The Directory to delete has the size: ' + str(daySeven.GetSizeDirToDelete()))
-
+    print('|' + breakLine(70))
+    print('|Day 8')
+    print('|The number of visible trees is: ' + str(dayEight.GetVisibeTrees()))
