@@ -5,40 +5,103 @@ def GetVisibeTrees() -> int:
     result = 0
 
     # Iterate over the array
-    for i in range(len(arr)):
-        for j in range(len(arr[0])):
+    for row in range(len(arr)):
+        for column in range(len(arr[row])):
             # Check if the current tree is visible from the left
-            visible_from_left = True
-            for k in range(j):
-                if arr[i][k] >= arr[i][j]:
-                    visible_from_left = False
+            visibleFromLeft = True
+            for k in range(column):
+                if arr[row][k] >= arr[row][column]:
+                    visibleFromLeft = False
                     break
 
             # Check if the current tree is visible from the right
-            visible_from_right = True
-            for k in range(j + 1, len(arr[0])):
-                if arr[i][k] >= arr[i][j]:
-                    visible_from_right = False
+            visibleFromRight = True
+            for k in range(column + 1, len(arr[0])):
+                if arr[row][k] >= arr[row][column]:
+                    visibleFromRight = False
                     break
 
             # Check if the current tree is visible from the top
-            visible_from_top = True
-            for k in range(i):
-                if arr[k][j] >= arr[i][j]:
-                    visible_from_top = False
+            visibleFromTop = True
+            for k in range(row):
+                if arr[k][column] >= arr[row][column]:
+                    visibleFromTop = False
                     break
 
             # Check if the current tree is visible from the bottom
-            visible_from_bottom = True
-            for k in range(i + 1, len(arr)):
-                if arr[k][j] >= arr[i][j]:
-                    visible_from_bottom = False
+            visibleFromBottom = True
+            for k in range(row + 1, len(arr)):
+                if arr[k][column] >= arr[row][column]:
+                    visibleFromBottom = False
                     break
 
             # If the current tree is visible from any direction,
             # increment the result
-            if visible_from_left or visible_from_right or visible_from_top or visible_from_bottom:
+            if visibleFromLeft or visibleFromRight or visibleFromTop or visibleFromBottom:
                 result += 1
 
     # Return the result
     return result
+
+def GetHighestScenicScore() -> int:
+    arr = GetInput()
+
+    # Keep track of the maximum scenic score
+    maxScenicScore = 0
+
+    # Iterate over the array
+    for row in range(len(arr)):
+        for column in range(len(arr[row])):
+            # Calculate the scenic score of the current tree
+            scenicScore = 1
+
+            # Calculate the scenic score of the current tree
+            # looking up
+            numTreesInView = 0
+            for k in range(row - 1, -1, -1):
+                if arr[k][column] >= arr[row][column]:
+                    numTreesInView += 1
+                    break
+                else:
+                    numTreesInView += 1
+            scenicScore *= numTreesInView
+
+            # Calculate the scenic score of the current tree
+            # looking left
+            numTreesInView = 0
+            for k in range(column - 1, -1, -1):
+                if arr[row][k] >= arr[row][column]:
+                    numTreesInView += 1
+                    break
+                else:
+                    numTreesInView += 1
+            scenicScore *= numTreesInView
+
+            # Calculate the scenic score of the current tree
+            # looking right
+            numTreesInView = 0
+            for k in range(column + 1, len(arr[0])):
+                if arr[row][k] >= arr[row][column]:
+                    numTreesInView += 1
+                    break
+                else:
+                    numTreesInView += 1
+            scenicScore *= numTreesInView
+
+            # Calculate the scenic score of the current tree
+            # looking down
+            numTreesInView = 0
+            for k in range(row + 1, len(arr)):
+                if arr[k][column] >= arr[row][column]:
+                    numTreesInView += 1
+                    break
+                else:
+                    numTreesInView += 1
+            scenicScore *= numTreesInView
+
+            # Update the maximum scenic score
+            maxScenicScore = max(maxScenicScore, scenicScore)
+
+
+    # Return the maximum scenic score
+    return maxScenicScore

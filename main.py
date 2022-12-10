@@ -47,3 +47,4 @@ if __name__ == '__main__':
     print('|' + breakLine(70))
     print('|Day 8')
     print('|The number of visible trees is: ' + str(dayEight.GetVisibeTrees()))
+    print('|The highes scenic score is: ' + str(dayEight.GetHighestScenicScore()))
