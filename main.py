@@ -1,5 +1,6 @@
 import dayEight
 import dayFive
+import dayNine
 import dayOne
 import daySeven
 import daySix
@@ -48,3 +49,7 @@ if __name__ == '__main__':
     print('|Day 8')
     print('|The number of visible trees is: ' + str(dayEight.GetVisibeTrees()))
     print('|The highes scenic score is: ' + str(dayEight.GetHighestScenicScore()))
+    print('|' + breakLine(70))
+    print('|Day 9')
+    print('|The number of positions visited at least once by the tail: ' + str(dayNine.GetPosVisOnce()))
+    # print('|The highes scenic score is: ' + str(dayNine))
