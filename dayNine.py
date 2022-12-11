@@ -10,19 +10,18 @@ def GetPosVisOnce() -> int:
     for command in input:
         direction = command[0].upper()
         count = command[1]
-        print(direction)
         for index in range(count):
             oldHead = headPos[:]
-            if command == 'R':
+            if direction == 'R':
                 if len(grid[headPos[0]]) - 1 == headPos[1]:
                     for line in grid:
                         line.append('.')
                 headPos[1] += 1
-            elif command == 'D':
+            elif direction == 'D':
                 if len(grid) - 1 == headPos[0]:
                     grid.append(['.'] * len(grid[headPos[0]]))
                 headPos[0] += 1
-            elif command == 'L':
+            elif direction == 'L':
                 if 0 == headPos[1]:
                     for line in grid:
                         line.insert(0, '.')
@@ -30,7 +29,7 @@ def GetPosVisOnce() -> int:
                     tailPos[1] += 1
                 else:
                     headPos[1] -= 1
-            elif command == 'U':
+            elif direction == 'U':
                 if 0 == headPos[0]:
                     grid.insert(0, ['.'] * len(grid[headPos[0]]))
                     oldHead[0] += 1
