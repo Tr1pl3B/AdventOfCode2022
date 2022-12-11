@@ -11,13 +11,16 @@ def GetPosVisOnce() -> int:
         direction = command[0].upper()
         count = command[1]
         if direction == 'R':
+            print(direction)
             for index in range(count):
                 oldHead = headPos[:]
                 if len(grid[headPos[0]]) - 1 == headPos[1]:
-                    grid[headPos[0]].append('.')
+                    for line in grid:
+                        line.append('.')
                 headPos[1] += 1
                 grid, tailPos = TailMovement(grid, headPos, tailPos, oldHead)
         if direction == 'D':
+            print(direction)
             for index in range(count):
                 oldHead = headPos[:]
                 if len(grid) - 1 == headPos[0]:
@@ -25,6 +28,7 @@ def GetPosVisOnce() -> int:
                 headPos[0] += 1
                 grid, tailPos = TailMovement(grid, headPos, tailPos, oldHead)
         if direction == 'L':
+            print(direction)
             for index in range(count):
                 oldHead = [headPos[0], headPos[1]]
                 if 0 == headPos[1]:
@@ -32,13 +36,19 @@ def GetPosVisOnce() -> int:
                         line.insert(0, '.')
                     oldHead[1] += 1
                     tailPos[1] += 1
-                headPos[1] -= 1
+                else:
+                    headPos[1] -= 1
                 grid, tailPos = TailMovement(grid, headPos, tailPos, oldHead)
         if direction == 'U':
+            print(direction)
             for index in range(count):
-                oldHead = [headPos[0]+1, headPos[1]]
-                grid.insert(0, ['.'] * len(grid[headPos[0]]))
-                tailPos[0] += 1
+                oldHead = [headPos[0], headPos[1]]
+                if 0 == headPos[0]:
+                    grid.insert(0, ['.'] * len(grid[headPos[0]]))
+                    oldHead[0] += 1
+                    tailPos[0] += 1
+                else:
+                    headPos[0] -= 1
                 grid, tailPos = TailMovement(grid, headPos, tailPos, oldHead)
 
     countPlaces = 0
