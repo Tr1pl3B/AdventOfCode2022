@@ -26,10 +26,13 @@ def GetPosVisOnce() -> int:
                 grid, tailPos = TailMovement(grid, headPos, tailPos, oldHead)
         if direction == 'L':
             for index in range(count):
-                oldHead = [headPos[0], headPos[1]+1]
-                for line in grid:
-                    line.insert(0, '.')
-                tailPos[1] += 1
+                oldHead = [headPos[0], headPos[1]]
+                if 0 == headPos[1]:
+                    for line in grid:
+                        line.insert(0, '.')
+                    oldHead[1] += 1
+                    tailPos[1] += 1
+                headPos[1] -= 1
                 grid, tailPos = TailMovement(grid, headPos, tailPos, oldHead)
         if direction == 'U':
             for index in range(count):
@@ -41,12 +44,13 @@ def GetPosVisOnce() -> int:
     countPlaces = 0
     for row in grid:
         for column in row:
-            countPlaces += 1
+            if column in ['s', '#']:
+                countPlaces += 1
     return countPlaces
 
 def TailMovement(grid, headPos, tailPos, oldHead) -> list(list()):
-    dif = headPos[0] - tailPos[0] + headPos[1] - tailPos[1]
-    if dif not in [-1, 0, 1] or headPos[0] - tailPos[0] not in [-1, 0, 1] or  headPos[1] - tailPos[1] not in [-1, 0, 1]:
+    dif = [headPos[0] - tailPos[0], headPos[1] - tailPos[1]]
+    if dif[0] not in [-1, 0, 1] or  dif[1] not in [-1, 0, 1]:
         tailPos = oldHead
         grid[tailPos[0]][tailPos[1]] = '#'
     return grid, tailPos
