@@ -52,4 +52,4 @@ if __name__ == '__main__':
     print('|' + breakLine(70))
     print('|Day 9')
     print('|The number of positions visited at least once by the tail: ' + str(dayNine.GetPosVisOnce()))
-    # print('|The highes scenic score is: ' + str(dayNine))
+    print('|!Falsch!The number of pxositions visited at least once by the tail (10 Knot rope): ' + str(dayNine.GetPosVisOnce10Knots()))

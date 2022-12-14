@@ -6,16 +6,32 @@ def GetPosVisOnce() -> int:
     grid = [['s']]
     headPos = [0, 0]
     tailPos = [0, 0]
-    oldHead = list()
     for command in input:
         direction = command[0].upper()
         count = command[1]
         for index in range(count):
-            grid, tailPos = MoveHead(grid, headPos, tailPos, oldHead, direction)
+            grid, tailPos = MoveHead(grid, headPos, tailPos, direction, True)
     return CountPlacesVis(grid)
 
 def GetPosVisOnce10Knots() -> int:
-    pass
+    input = GetInput()
+    grid = [['s']]
+    knots = [[0, 0]] * 10
+    for command in input:
+        direction = command[0].upper()
+        count = command[1]
+        for index in range(count):
+            for knot in range(len(knots) - 1):
+                headPos = knots[knot][:]
+                tailPos = knots[knot + 1][:]
+                theOneTail = False
+                if knot == len(knots) - 2:
+                    theOneTail = True
+                grid, tailPos = MoveHead(grid, headPos, tailPos, direction, theOneTail)
+                knots[knot] = headPos[:]
+                knots[knot + 1] = tailPos[:]
+    return CountPlacesVis(grid)
+
 
 def CountPlacesVis(grid) -> int:
     countPlaces = 0
@@ -25,7 +41,7 @@ def CountPlacesVis(grid) -> int:
                 countPlaces += 1
     return countPlaces
 
-def MoveHead(grid, headPos, tailPos, oldHead, direction):
+def MoveHead(grid, headPos, tailPos, direction, theOneTail):
     oldHead = headPos[:]
     if direction == 'R':
         if len(grid[headPos[0]]) - 1 == headPos[1]:
@@ -51,10 +67,12 @@ def MoveHead(grid, headPos, tailPos, oldHead, direction):
             tailPos[0] += 1
         else:
             headPos[0] -= 1
-    return TailMovement(grid, headPos, tailPos, oldHead)
-def TailMovement(grid, headPos, tailPos, oldHead) -> list(list()):
+    return TailMovement(grid, headPos, tailPos, oldHead, theOneTail)
+
+def TailMovement(grid, headPos, tailPos, oldHead, theOneTail) -> list(list()):
     dif = [headPos[0] - tailPos[0], headPos[1] - tailPos[1]]
     if dif[0] not in [-1, 0, 1] or  dif[1] not in [-1, 0, 1]:
         tailPos = oldHead
-        grid[tailPos[0]][tailPos[1]] = '#'
+        if theOneTail:
+            grid[tailPos[0]][tailPos[1]] = '#'
     return grid, tailPos
