@@ -1,12 +1,12 @@
-import dayEight
-import dayFive
-import dayNine
-import dayOne
-import daySeven
-import daySix
-import dayThree
-import dayTwo
-import dayFour
+import day8
+import day5
+import day9
+import day1
+import day7
+import day6
+import day3
+import day2
+import day4
 from pathlib import Path
 
 def breakLine(len) -> str:
