@@ -22,4 +22,11 @@ def GetImmage() -> str:
             screen[row][cycle - 40 * row] = '#'
         if command.isnumeric() or command[0] == '-':
             x += int(command)
-    return screen
+    output = ''
+    for row in screen:
+        line = ''
+        for char in row:
+            line = line + char
+        output = output + line + '\n'
+
+    return output
