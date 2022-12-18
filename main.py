@@ -1,4 +1,5 @@
 import day10
+import day11
 import day8
 import day5
 import day9
@@ -58,4 +59,7 @@ if __name__ == '__main__':
     print('|Day 10')
     print('|The sum of the signal strength is: ' + str(day10.GetSumOfSignalStrength()))
     print('|The printed picutre is: \n' + str(day10.GetImmage()))
-    # print('|' + breakLine(70))
+    print('|' + breakLine(70))
+    print('|Day 11')
+    print('|The monkey business of the top two monkeys is: ' + str(day11.GetMonkeyBusiness()))
+    # print('|The printed picutre is: \n' + str(day10.GetImmage()))
