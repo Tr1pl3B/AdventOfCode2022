@@ -22,10 +22,12 @@ def GetImmage() -> str:
         if command.isnumeric() or command[0] == '-':
             x += int(command)
     output = ''
-    for row in screen:
+    for index, row in enumerate(screen):
         line = ''
         for char in row:
             line = line + char
-        output = output + line + '\n'
+        output = output + line
+        if index != len(screen) - 1:
+            output = output + '\n'
 
     return output
